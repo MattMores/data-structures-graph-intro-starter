@@ -50,30 +50,32 @@ class Graph {
 
   depthFirstTraversalIterative(startingVertex) {
     let visited = new Set()
-    let queue = [startingVertex]
+    let stack = [startingVertex]
     let vertices = []
-    while (queue.length) {
-      const vertex = queue.shift()
-      if (visited.has(vertex)) return false;
+    while (stack.length) {
+      const vertex = stack.pop()
+      if (visited.has(vertex)) continue;
       visited.add(vertex)
       vertices.push(vertex)
       this.adjList[vertex].forEach(neighbor => {
-        queue.push(neighbor)
+        stack.push(neighbor)
       })
     }
-    return true;
+    return vertices;
   }
 
   depthFirstTraversalRecursive(startingVertex, visited = new Set(), vertices = []) {
+    for (let vertex in this.adjList) {
     if (visited.has(startingVertex)) {
-      return false;
+      return vertices;
     }
     visited.add(startingVertex);
-    visited[startingVertex].forEach(neighbor => {
-      depthFirstTraversalIterative(startingVertex, visited, vertices);
+    vertices.push(startingVertex)
+    this.adjList[startingVertex].forEach(neighbor => {
+      this.depthFirstTraversalRecursive(neighbor, visited, vertices);
     })
   }
-
+}
 }
 
 module.exports = {
