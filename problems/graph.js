@@ -1,16 +1,26 @@
 
 class Graph {
   constructor() {
-    // Code goes here ...
+    this.adjList = new Object();
   }
 
-  addVertex(vertex) {
-    // Code goes here ...
+  addVertex(vertex) { // node
+    if (!this.adjList[vertex]) {
+      this.adjList[vertex] = []
+    }
   }
 
-  addEdges(srcValue, destValue) {
-    // Code goes here ...
+  addEdges(srcValue, destValue) { // arrows
+    if (!this.adjList[srcValue]) {
+      this.addVertex(srcValue)
+    }
+    if (!this.adjList[destValue]) {
+      this.addVertex(destValue)
+    }
+    this.adjList[srcValue].push(destValue);
+    this.adjList[destValue].push(srcValue);
   }
+
 
   buildGraph(edges) {
     // Code goes here ...
@@ -33,12 +43,3 @@ class Graph {
 module.exports = {
   Graph
 };
-
-
-
-
-
-
-
-
-
