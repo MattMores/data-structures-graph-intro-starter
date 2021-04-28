@@ -35,7 +35,7 @@ describe('Graph Implementation', () => {
             });
         });
 
-        
+
     });
 
     describe('#addEdges(edge1, edge2)', () => {
@@ -63,7 +63,7 @@ describe('Graph Implementation', () => {
                 expect(graph.adjList).to.eql({ 'f': ['a', 'b'], 'a': ['f'], 'b': ['f'] });
             });
         });
-        
+
     });
 
     describe('#buildGraph(edgeList)', () => {
@@ -78,7 +78,7 @@ describe('Graph Implementation', () => {
                     ['b', 'e'],
                     ['c', 'f'],
                     ['c', 'g'],
-                    ['f', 'g']]  
+                    ['f', 'g']]
 
                 let graph = new Graph();
 
@@ -91,7 +91,7 @@ describe('Graph Implementation', () => {
                     e: ['b'],
                     f: ['c', 'g']
                 }
-                
+
                 expect(graph.buildGraph(edges)).to.eql(graph1);
             });
         });
@@ -199,4 +199,3 @@ describe('Graph Implementation', () => {
         });
     });
 });
-
