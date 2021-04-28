@@ -38,7 +38,7 @@ class Graph {
     let vertices = []
     while (queue.length) {
       const vertex = queue.shift()
-     if (visited.has(vertex)) continue
+      if (visited.has(vertex)) continue
       visited.add(vertex)
       vertices.push(vertex)
       this.adjList[vertex].forEach(neighbor => {
@@ -49,11 +49,29 @@ class Graph {
   }
 
   depthFirstTraversalIterative(startingVertex) {
-    // Code goes here ...
+    let visited = new Set()
+    let queue = [startingVertex]
+    let vertices = []
+    while (queue.length) {
+      const vertex = queue.shift()
+      if (visited.has(vertex)) return false;
+      visited.add(vertex)
+      vertices.push(vertex)
+      this.adjList[vertex].forEach(neighbor => {
+        queue.push(neighbor)
+      })
+    }
+    return true;
   }
 
   depthFirstTraversalRecursive(startingVertex, visited = new Set(), vertices = []) {
-    // Code goes here ...
+    if (visited.has(startingVertex)) {
+      return false;
+    }
+    visited.add(startingVertex);
+    visited[startingVertex].forEach(neighbor => {
+      depthFirstTraversalIterative(startingVertex, visited, vertices);
+    })
   }
 
 }
